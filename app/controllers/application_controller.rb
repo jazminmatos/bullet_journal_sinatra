@@ -24,11 +24,17 @@ class ApplicationController < Sinatra::Base
   #params => {"username"=>"Jaz", "email"=>"jaz@gmail.com", "password"=>"pw"}
   post '/signup' do
     #binding.pry
-    
+
     #create new instance of user
     @user = User.new(params)
+    
+    #Save to database -- will not save if there's no pw
     #Make sure they inputted all 3 fields
-    #Save to database
+    if @user.save && user.username != "" && user.email != ""
+      session[:user_id] = @user.id #now has an id b/c it saved
+    else
+    end
+    
     #Log them in by setting session hash --> then redirect to entries
     #If can't log them in, redirect to signup (error message pop up?)
   end
