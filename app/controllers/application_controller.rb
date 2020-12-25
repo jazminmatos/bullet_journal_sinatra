@@ -30,12 +30,15 @@ class ApplicationController < Sinatra::Base
     
     #Save to database -- will not save if there's no pw
     #Make sure they inputted all 3 fields
-    if @user.save && user.username != "" && user.email != ""
+    if @user.save && @user.username != "" && @user.email != ""
+      #Log them in by setting session hash --> then redirect to entries
       session[:user_id] = @user.id #now has an id b/c it saved
+
+      ###redirect to list of journal entries
     else
+      redirect '/signup'
     end
     
-    #Log them in by setting session hash --> then redirect to entries
     #If can't log them in, redirect to signup (error message pop up?)
   end
 
