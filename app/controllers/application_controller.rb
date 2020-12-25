@@ -20,7 +20,17 @@ class ApplicationController < Sinatra::Base
     erb :'/users/signup'
   end
 
+  #receives user input from signup form
+  #params => {"username"=>"Jaz", "email"=>"jaz@gmail.com", "password"=>"pw"}
   post '/signup' do
+    #binding.pry
+    
+    #create new instance of user
+    @user = User.new(params)
+    #Make sure they inputted all 3 fields
+    #Save to database
+    #Log them in by setting session hash --> then redirect to entries
+    #If can't log them in, redirect to signup (error message pop up?)
   end
 
   #loads the login page
