@@ -10,8 +10,17 @@ class ApplicationController < Sinatra::Base
   end
 
   #loads the homepage
-  get "/" do
+  get '/' do
     erb :index
+  end
+
+  #loads the signup page
+  ###should not have access if already logged in
+  get '/signup' do
+    erb :signup
+  end
+
+  post '/signup' do
   end
 
   #loads the login page
