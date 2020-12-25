@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
   #loads the signup page
   ###should not have access if already logged in
   get '/signup' do
-    erb :signup
+    erb :'/users/signup'
   end
 
   post '/signup' do
@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
   #loads the login page
   ###should not have access if already logged in
   get '/login' do
-    erb :'users/login'
+    erb :'/users/login'
   end
 
   #finds the user using username
