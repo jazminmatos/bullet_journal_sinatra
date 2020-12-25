@@ -14,6 +14,23 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  #loads the login page
+  ###should not have access if already logged in
+  get '/login' do
+    erb :'users/login'
+  end
+
+  #finds the user using username
+  #if user exists and the salted & hashed pw matches the one in the db, logs in user
+  post '/login' do
+    user = User.find_by(username: params[:username])
+
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      ###redirect to list of journal entries
+    end
+  end
+
   helpers do
     #finds the current_user
     def current_user
