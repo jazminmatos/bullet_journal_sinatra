@@ -23,8 +23,6 @@ class ApplicationController < Sinatra::Base
   #receives user input from signup form
   #params => {"username"=>"Jaz", "email"=>"jaz@gmail.com", "password"=>"pw"}
   post '/signup' do
-    #binding.pry
-
     #create new instance of user
     @user = User.new(params)
     
@@ -45,7 +43,11 @@ class ApplicationController < Sinatra::Base
   #loads the login page
   ###should not have access if already logged in
   get '/login' do
-    erb :'/users/login'
+    if logged_in?
+      redirect '/entries'
+    else
+      erb :'/users/login'
+    end
   end
 
   #receives user input from login form
@@ -56,7 +58,7 @@ class ApplicationController < Sinatra::Base
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      ###redirect to list of journal entries
+      redirect '/entries'
     end
   end
 
@@ -82,6 +84,7 @@ class ApplicationController < Sinatra::Base
   #user should be logged in
   get '/entries' do
     if logged_in?
+      #in order to access user and entries in view file
       @user = current_user
       @entries = Entry.all
 
