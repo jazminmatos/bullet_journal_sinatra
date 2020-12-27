@@ -96,7 +96,16 @@ class ApplicationController < Sinatra::Base
 
       erb :'/entries/entries'
     else
-      redirect '/login'
+      redirect '/login' ###add error message?
+    end
+  end
+
+  #loads the create entries form
+  get '/entries/new' do
+    if logged_in?
+      erb :'/entries/new'
+    else
+      redirect '/login' ###add error message?
     end
   end
 
