@@ -78,6 +78,19 @@ class ApplicationController < Sinatra::Base
   #   erb :'/users/show'
   # end
 
+  #displays a user's entries
+  #user should be logged in
+  get '/entries' do
+    if logged_in?
+      @user = current_user
+      @entries = Entry.all
+
+      erb :'/entries/entries'
+    else
+      redirect '/login'
+    end
+  end
+
   helpers do
     #finds the current_user
     def current_user
