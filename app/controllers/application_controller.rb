@@ -70,12 +70,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  #display a user's entries
-  get '/users/:username' do
-    binding.pry
-    @user = User.find_by(username: params[:username])
-    erb :'/users/show'
-  end
+  # display a user's entries
+  # This will be replaced by '/entries/entries.erb'
+  # get '/users/:username' do
+  #   binding.pry
+  #   @user = User.find_by(username: params[:username])
+  #   erb :'/users/show'
+  # end
 
   helpers do
     #finds the current_user
