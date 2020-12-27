@@ -123,6 +123,16 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/entries/:id' do
+    if logged_in?
+      @user = current_user
+      @entry = Entry.find_by_id(params[:id])
+      erb :'/entries/show_entry'
+    else
+      redirect '/login'
+    end
+  end
+
   helpers do
     #finds the current_user
     def current_user
