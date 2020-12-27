@@ -1,5 +1,5 @@
 class EntryAppController < ApplicationController
-    # display a user's entries
+  # display a user's entries
   # This will be replaced by '/entries/entries.erb'
   # get '/users/:username' do
   #   binding.pry

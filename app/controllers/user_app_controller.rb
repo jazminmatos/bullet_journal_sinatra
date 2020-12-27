@@ -1,5 +1,5 @@
 class UserAppController < ApplicationController
-#loads the signup page
+  #loads the signup page
   #should not have access if already logged in
   get '/signup' do
     if logged_in?

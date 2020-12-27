@@ -6,3 +6,5 @@ end
 
 use Rack::MethodOverride #in order to use patch, put, and delete requests
 run ApplicationController
+use UserAppController
+use EntryAppController
