@@ -109,6 +109,14 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/entries' do
+    if logged_in?
+      
+    else
+      redirect '/login'
+    end
+  end
+
   helpers do
     #finds the current_user
     def current_user
