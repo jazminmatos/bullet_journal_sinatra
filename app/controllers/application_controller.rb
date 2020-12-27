@@ -109,9 +109,15 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  #receives user input from create from
+  #params => {"date" => "", "goal" => "", "log" => "", "gratitude" => "",}
+    ###Date = shouldn't accept if not a date (params doesn't accept it anyway)
+
   post '/entries' do
     if logged_in?
-      
+      binding.pry
+      @entry = Entry.new(params)
+      redirect '/entries/#{@entry.id}'
     else
       redirect '/login'
     end
