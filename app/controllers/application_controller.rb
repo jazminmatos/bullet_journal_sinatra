@@ -48,6 +48,7 @@ class ApplicationController < Sinatra::Base
     erb :'/users/login'
   end
 
+  #receives user input from login form
   #finds the user using username
   #if user exists and the salted & hashed pw matches the one in the db, logs in user
   post '/login' do
@@ -57,6 +58,23 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = user.id
       ###redirect to list of journal entries
     end
+  end
+
+  #clear session hash to logout user
+  get '/logout' do
+    if logged_in?
+      session.clear
+      redirect '/login'
+    else
+      redirect '/'
+    end
+  end
+
+  #display a user's entries
+  get '/users/:username' do
+    binding.pry
+    @user = User.find_by(username: params[:username])
+    erb :'/users/show'
   end
 
   helpers do
