@@ -110,14 +110,16 @@ class ApplicationController < Sinatra::Base
   end
 
   #receives user input from create from
-  #params => {"date" => "", "goal" => "", "log" => "", "gratitude" => "",}
+  #params => {"date" => "", "goal" => "", "log" => "", "gratitude" => ""}
+  #fields can't be empty
   post '/entries' do
-    if logged_in?
+    ###is 'logged_in? necessary if you can't access this page if you're logged out due to get request?
+    if logged_in? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
       #binding.pry
-      @entry = Entry.new(params)
+      @entry = Entry.create(params)
       redirect '/entries/#{@entry.id}'
     else
-      redirect '/login' ###add error message?
+      redirect '/entries/new' ###add error message?
     end
   end
 
