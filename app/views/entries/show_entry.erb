@@ -1,0 +1,20 @@
+<h1>Congratulations <%= @user.username %>! You made a journal entry.</h1>
+
+<b>Date:</b>
+<%= @entry.date.strftime("%m-%d-%Y") %>
+<br><br>
+
+<b>Goal of the day:</b>
+<br>
+<%= @entry.goal %>
+<br><br>
+
+<b>Log of the day:</b>
+<br>
+<%= @entry.log %>
+<br><br>
+
+<b>Gratitude of the day:</b>
+<br>
+<%= @entry.gratitude %>
+<br><br><br>
