@@ -17,7 +17,11 @@ class ApplicationController < Sinatra::Base
   #loads the signup page
   ###should not have access if already logged in
   get '/signup' do
-    erb :'/users/signup'
+    if logged_in?
+      redirect '/entries'
+    else
+      erb :'/users/signup'
+    end
   end
 
   #receives user input from signup form
@@ -41,7 +45,7 @@ class ApplicationController < Sinatra::Base
   end
 
   #loads the login page
-  ###should not have access if already logged in
+  #should not have access if already logged in
   get '/login' do
     if logged_in?
       redirect '/entries'
