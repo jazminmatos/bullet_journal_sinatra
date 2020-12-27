@@ -38,7 +38,7 @@ class EntryAppController < ApplicationController
     if logged_in? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
       #binding.pry
       @entry = Entry.create(params)
-      redirect '/entries/#{@entry.id}'
+      redirect "/entries/#{@entry.id}" #doesn't work with single quotes
     else
       redirect '/entries/new' ###add error message?
     end
