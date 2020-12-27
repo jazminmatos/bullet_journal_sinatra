@@ -1,5 +1,27 @@
 <h1>Create a new journal entry!</h1>
 
 <form method='POST' action='/entries'>
+    <label>Date</label>
+    <br>
     <input type="text" id="date" name="date">
+    <br><br>
+
+    <label>Goal</label>
+    <br>
+    <input type="text" id="goal" name="goal">
+    <br><br>
+
+    <label>Log</label>
+    <br>
+    <input type="text" id="log" name="log">
+    <br><br>
+
+    <label>Gratitude</label>
+    <br>
+    <input type="text" id="gratitude" name="gratitude">
+    <br><br>
+
+    <input type="submit" value="Create Entry">
 </form>
+
+<p><a href='/logout'>Log Out<a></p>
