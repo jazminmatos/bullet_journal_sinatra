@@ -36,9 +36,9 @@ class ApplicationController < Sinatra::Base
       #Log them in by setting session hash --> then redirect to entries
       session[:user_id] = @user.id #now has an id b/c it saved
 
-      ###redirect to list of journal entries
+      redirect '/entries'
     else
-      redirect '/signup'
+      redirect '/signup' ###add an error message???
     end
     
     #If can't log them in, redirect to signup (error message pop up?)
@@ -63,6 +63,8 @@ class ApplicationController < Sinatra::Base
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/entries'
+    else
+      redirect '/login' ###add an error message?
     end
   end
 
