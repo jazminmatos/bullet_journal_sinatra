@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
   end
 
   #loads the signup page
-  ###should not have access if already logged in
+  #should not have access if already logged in
   get '/signup' do
     if logged_in?
       redirect '/entries'
