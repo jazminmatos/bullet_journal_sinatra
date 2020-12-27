@@ -1,3 +1,7 @@
+<h1>Welcome to your Digital Bullet Journal, <%= @user.username %>!</h1>
 
+<% @entries.each do |entry| %>
+    <%= entry %>
+<% end %>
 
 <p><a href='/logout'>Log Out<a></p>
