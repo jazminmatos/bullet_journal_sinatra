@@ -45,11 +45,12 @@ class EntryAppController < ApplicationController
 
   #loads individual entry pages
   #inaccessible if logged out
+  #inaccessible if incorrect user
   get '/entries/:id' do
-    if logged_in?
+    @entry = Entry.find_by_id(params[:id])
+    if logged_in? && @entry.user_id == current_user.id
       #need access to user & entry in the view file
       @user = current_user
-      @entry = Entry.find_by_id(params[:id])
       erb :'/entries/show_entry'
     else
       redirect '/login'
