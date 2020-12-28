@@ -70,12 +70,11 @@ class EntryAppController < ApplicationController
     end
   end
 
-  #update all fields
+  #update all fields & save
   #Make sure all fields are filled out (no blanks)
   patch '/entries/:id' do
     @entry = Entry.find_by_id(params[:id])
     if !params[:date].empty? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
-        #binding.pry
         @entry.update(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude])
         @entry.save
         redirect "/entries/#{@entry.id}"
