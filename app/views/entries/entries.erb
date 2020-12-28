@@ -1,16 +1,10 @@
 <h1>Welcome to your Digital Bullet Journal, <%= @user.username %>!</h1>
 
 <p>See your previous journal entries below.</p> 
-<p>If you'd like to create a new one, click here!</p>
+<p>If you'd like to create a new one, <a href="/entries/new">click here</a>!</p>
 
 <% @entries.each do |entry| %>
     <br><a href="/entries/<%=entry.id%>"><%= entry.date.strftime("%m-%d-%Y") %></a>
 <% end %>
 
 <p><a href='/logout'>Log Out<a></p>
-
-
-
-#Need to link option to create new entry
-#finish iteration of entries display
-    #each date should hyperlink to its own show entry page
