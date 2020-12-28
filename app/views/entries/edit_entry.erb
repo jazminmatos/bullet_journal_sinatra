@@ -1,1 +1,28 @@
-<h1>You made it!</h1>
+<h1>Edit your entry from <%= @entry.date.strftime("%m-%d-%Y") %>.</h1>
+
+<form method="POST" action='/entries/<%=@entry.id%>'>
+    <input type="hidden" name="_method" id="hidden" value="PATCH"
+
+    <label></label>
+    <br>
+    <input type="" name="" value="">
+    <br><br>
+
+    <label></label>
+    <br>
+    <input type="" name="" value="">
+    <br><br>
+
+    <label></label>
+    <br>
+    <input type="" name="" value="">
+    <br><br>
+
+    <label></label>
+    <br>
+    <input type="" name="" value="">
+    <br><br>
+
+    
+    <input type="submit" value="Edit Entry">
+</form>
