@@ -11,9 +11,8 @@ class EntryAppController < ApplicationController
   #user should be logged in
   get '/entries' do
     if logged_in?
-      #in order to access user and entries in view file
+      #in order to access user in view file
       @user = current_user
-      @entries = Entry.all
 
       erb :'/entries/entries'
     else
