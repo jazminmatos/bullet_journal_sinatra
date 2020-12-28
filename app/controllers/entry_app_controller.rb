@@ -56,4 +56,18 @@ class EntryAppController < ApplicationController
       redirect '/login'
     end
   end
+
+  #loads edit form
+  #make sure they're logged in
+  #make sure correct user is accessing this
+  #find entry using id
+  get '/entries/:id/edit' do
+    @entry = Entry.find_by_id(params[:id])
+    binding.pry
+    if logged_in? #&& @entry.user == current_user
+        erb :'/entries/edit_entry'
+    else
+        redirect '/login'
+    end
+  end
 end
