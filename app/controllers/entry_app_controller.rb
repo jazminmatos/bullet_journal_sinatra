@@ -37,7 +37,7 @@ class EntryAppController < ApplicationController
     ###is 'logged_in? necessary if you can't access this page if you're logged out due to get request?
     if logged_in? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
       #binding.pry
-      @entry = Entry.create(params)
+      @entry = Entry.create(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude], user_id: current_user.id)
       redirect "/entries/#{@entry.id}" #doesn't work with single quotes
     else
       redirect '/entries/new' ###add error message?
@@ -63,8 +63,7 @@ class EntryAppController < ApplicationController
   #find entry using id
   get '/entries/:id/edit' do
     @entry = Entry.find_by_id(params[:id])
-    binding.pry
-    if logged_in? #&& @entry.user == current_user
+    if logged_in? && @entry.user == current_user
         erb :'/entries/edit_entry'
     else
         redirect '/login'
