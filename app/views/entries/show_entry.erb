@@ -23,7 +23,8 @@
 <a href="/entries/new">Create New Entry</a>
 <br><br>
 
-<form method="POST" action="/entries/<%=@entry.id%>/delete">
+<form method="POST" action="/entries/<%=@entry.id%>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Entry">
 </form>
 <br>

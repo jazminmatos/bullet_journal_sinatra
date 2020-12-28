@@ -82,4 +82,6 @@ class EntryAppController < ApplicationController
         redirect "/entries/#{@entry.id}/edit"
     end
   end
+
+  post '/'
 end
