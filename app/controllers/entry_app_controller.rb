@@ -35,7 +35,7 @@ class EntryAppController < ApplicationController
   #fields can't be empty
   post '/entries' do
     ###is 'logged_in? necessary if you can't access this page if you're logged out due to get request?
-    if logged_in? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
+    if logged_in? && !params[:date].empty? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
       #binding.pry
       @entry = Entry.create(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude], user_id: current_user.id)
       redirect "/entries/#{@entry.id}" #doesn't work with single quotes
