@@ -83,5 +83,16 @@ class EntryAppController < ApplicationController
     end
   end
 
-  post '/'
+  #deletes entries
+  #find entry by its id
+  #make sure another user can't delete it
+  delete '/entries/:id' do
+    @entry = Entry.find_by_id(params[:id])
+    if @entry.user_id == current_user.id
+        @entry.delete
+        redirect '/entries'
+    else
+        redirect "/entries/#{@entry.id}"
+    end
+  end
 end
