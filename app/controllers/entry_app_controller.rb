@@ -45,9 +45,7 @@ class EntryAppController < ApplicationController
   end
 
   #loads individual entry pages
-  ###confirm that this works tomorrow!!!!!!!!!!!!!!!!!!!
-  ###Next step: work on show_entry file, then edit_entry
-  ###confirm that post '/entries' redirect (above) ('/entries/#{@entry.id}') works 
+  #inaccessible if logged out
   get '/entries/:id' do
     if logged_in?
       #need access to user & entry in the view file
