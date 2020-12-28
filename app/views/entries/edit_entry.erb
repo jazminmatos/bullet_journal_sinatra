@@ -3,26 +3,26 @@
 <form method="POST" action='/entries/<%=@entry.id%>'>
     <input type="hidden" name="_method" id="hidden" value="PATCH"
 
-    <label></label>
+    <label>Date</label>
     <br>
-    <input type="" name="" value="">
+    <input type="date" name="date" value="">
     <br><br>
 
-    <label></label>
+    <label>Goal</label>
     <br>
-    <input type="" name="" value="">
+    <input type="text" name="goal" value="">
     <br><br>
 
-    <label></label>
+    <label>Log</label>
     <br>
-    <input type="" name="" value="">
+    <input type="text" name="log" value="">
     <br><br>
 
-    <label></label>
+    <label>Gratitude</label>
     <br>
-    <input type="" name="" value="">
+    <input type="text" name="gratitude" value="">
     <br><br>
 
-    
     <input type="submit" value="Edit Entry">
+    <br><br>
 </form>
