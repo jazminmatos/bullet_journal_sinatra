@@ -1,12 +1,4 @@
 class EntryAppController < ApplicationController
-  # display a user's entries
-  # This will be replaced by '/entries/entries.erb'
-  # get '/users/:username' do
-  #   binding.pry
-  #   @user = User.find_by(username: params[:username])
-  #   erb :'/users/show'
-  # end
-
   #displays a user's entries
   #user should be logged in
   get '/entries' do
@@ -16,7 +8,7 @@ class EntryAppController < ApplicationController
 
       erb :'/entries/entries'
     else
-      redirect '/login' ###add error message?
+      redirect '/login'
     end
   end
 
@@ -25,7 +17,7 @@ class EntryAppController < ApplicationController
     if logged_in?
       erb :'/entries/new'
     else
-      redirect '/login' ###add error message?
+      redirect '/login'
     end
   end
 
@@ -33,13 +25,12 @@ class EntryAppController < ApplicationController
   #params => {"date" => "", "goal" => "", "log" => "", "gratitude" => ""}
   #fields can't be empty
   post '/entries' do
-    ###is 'logged_in? necessary if you can't access this page if you're logged out due to get request?
-    if logged_in? && !params[:date].empty? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
+    if !params[:date].empty? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
       #binding.pry
       @entry = Entry.create(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude], user_id: current_user.id)
       redirect "/entries/#{@entry.id}" #doesn't work with single quotes
     else
-      redirect '/entries/new' ###add error message?
+      redirect '/entries/new'
     end
   end
 

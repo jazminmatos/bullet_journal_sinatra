@@ -11,7 +11,6 @@ class UserAppController < ApplicationController
 
   #receives user input from signup form
   #params => {"username"=>"Jaz", "email"=>"jaz@gmail.com", "password"=>"pw"}
-  ###How to make it so that you can't sign up if user already exists??? validate_uniqueness?
   post '/signup' do
     #create new instance of user
     @user = User.new(params)
@@ -24,10 +23,8 @@ class UserAppController < ApplicationController
 
       redirect '/entries'
     else
-      redirect '/signup' ###add an error message???
+      redirect '/signup'
     end
-    
-    #If can't log them in, redirect to signup (error message pop up?)
   end
 
   #loads the login page
@@ -50,7 +47,7 @@ class UserAppController < ApplicationController
       session[:user_id] = user.id
       redirect '/entries'
     else
-      redirect '/login' ###add an error message?
+      redirect '/login'
     end
   end
 
