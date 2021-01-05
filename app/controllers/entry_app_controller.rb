@@ -27,8 +27,12 @@ class EntryAppController < ApplicationController
   post '/entries' do
     if !params[:date].empty? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
       #binding.pry
-      @entry = Entry.create(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude], user_id: current_user.id)
-      redirect "/entries/#{@entry.id}" #doesn't work with single quotes
+      @entry = Entry.new(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude], user_id: current_user.id)
+      if @entry.save
+        redirect "/entries/#{@entry.id}" #doesn't work with single quotes
+      else
+        redirect '/entries/new'
+      end
     else
       redirect '/entries/new'
     end
