@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
 
     validates_uniqueness_of :username
     validates_uniqueness_of :email
+    validates :username, :email, presence: true
 end

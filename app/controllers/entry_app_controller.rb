@@ -2,40 +2,28 @@ class EntryAppController < ApplicationController
   #displays a user's entries
   #user should be logged in
   get '/entries' do
-    if logged_in?
-      #in order to access user in view file
-      @user = current_user
-
-      erb :'/entries/entries'
-    else
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
+    #in order to access entries in view file
+    @entries = current_user.entries
+    erb :'/entries/entries'
   end
 
   #loads the create entries form
   get '/entries/new' do
-    if logged_in?
-      erb :'/entries/new'
-    else
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
+    erb :'/entries/new'
   end
 
   #receives user input from create from
   #params => {"date" => "", "goal" => "", "log" => "", "gratitude" => ""}
   #fields can't be empty
   post '/entries' do
-    if !params[:date].empty? && !params[:goal].empty? && !params[:log].empty? && !params[:gratitude].empty?
-      #binding.pry
-      @entry = Entry.new(date: params[:date], goal: params[:goal], log: params[:log], gratitude: params[:gratitude], user_id: current_user.id)
-      if @entry.save
+      @entry = current_user.entries.new(params)
+      if @entry.save #checking if Entry validation goes through
         redirect "/entries/#{@entry.id}" #doesn't work with single quotes
       else
         redirect '/entries/new'
       end
-    else
-      redirect '/entries/new'
-    end
   end
 
   #loads individual entry pages
@@ -43,13 +31,8 @@ class EntryAppController < ApplicationController
   #inaccessible if incorrect user
   get '/entries/:id' do
     @entry = Entry.find_by_id(params[:id])
-    if logged_in? && @entry.user_id == current_user.id
-      #need access to user & entry in the view file
-      @user = current_user
-      erb :'/entries/show_entry'
-    else
-      redirect '/login'
-    end
+    redirect_if_not_authorized(@entry, '/entries')
+    erb :'/entries/show_entry'
   end
 
   #loads edit form

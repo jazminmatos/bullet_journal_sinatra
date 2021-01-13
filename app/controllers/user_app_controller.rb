@@ -17,13 +17,14 @@ class UserAppController < ApplicationController
     
     #Save to database -- will not save if there's no pw
     #Make sure they inputted all 3 fields
-    if @user.save && @user.username != "" && @user.email != ""
+    if @user.save
       #Log them in by setting session hash --> then redirect to entries
       session[:user_id] = @user.id #now has an id b/c it saved
 
       redirect '/entries'
     else
-      redirect '/signup'
+      @errors = @user.errors.full_messages.to_sentence
+      erb :'/users/signup'
     end
   end
 

@@ -1,4 +1,4 @@
-<h1>Congratulations <%= @user.username %>! You made a journal entry.</h1>
+<h1>Congratulations <%= current_user.username %>! You made a journal entry.</h1>
 
 <b>Date:</b>
 <%= @entry.date.strftime("%m-%d-%Y") %>
